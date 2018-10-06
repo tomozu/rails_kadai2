@@ -26,6 +26,11 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
   end
   
+  def confirm
+    @blog = Blog.new(blog_params)
+    render :new if @blog.invalid?
+  end
+  
   def show
    @blog = Blog.find(params[:id])
   end
@@ -52,10 +57,5 @@ class BlogsController < ApplicationController
   
   def set_blog
     @blog = Blog.find(params[:id])
-  end
-  
-  def confirm
-    @blog = Blog.new(blog_params)
-    render :new if @blog.invalid?
   end
 end
